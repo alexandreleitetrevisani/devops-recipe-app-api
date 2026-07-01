@@ -171,8 +171,10 @@ data "aws_iam_policy_document" "rds" {
     resources = ["*"]
   }
   statement {
-    effect    = "Allow"
-    actions   = ["rds:AddTagsToResource"]
+    effect = "Allow"
+    actions = ["rds:AddTagsToResource",
+      "rds:CreateDBSubnetGroup"
+    ]
     resources = ["arn:aws:rds:us-east-1:436355585582:*"]
   }
 
