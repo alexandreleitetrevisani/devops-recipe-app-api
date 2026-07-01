@@ -170,6 +170,12 @@ data "aws_iam_policy_document" "rds" {
     ]
     resources = ["*"]
   }
+  statement {
+    effect    = "Allow"
+    actions   = ["rds:AddTagsToResource"]
+    resources = ["arn:aws:rds:us-east-1:436355585582:subgrp:raa-staging-main"]
+  }
+
 }
 
 resource "aws_iam_policy" "rds" {
