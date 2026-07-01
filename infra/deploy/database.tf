@@ -8,6 +8,9 @@ resource "aws_db_subnet_group" "main" {
     aws_subnet.private_a.id,
     aws_subnet.private_b.id
   ]
+  lifecycle {
+    ignore_changes = [tags, tags_all]
+  }
 }
 
 resource "aws_security_group" "rds" {
