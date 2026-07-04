@@ -30,8 +30,12 @@ RUN python -m venv /py && \
         django-user && \
   #  mkdir -p /vol/web/static && \
   #  mkdir -p /vol/web/media && \
+    
     chown -R django-user:django-user /vol && \
+    # ADICIONE ESTA LINHA ABAIXO PARA LIBERTAR A ESCRITA EM /app
+    chown -R django-user:django-user /app && \
     chmod -R 755 /vol && \
+    chmod -R 755 /app && \
     chmod -R +x /scripts
 
 ENV PATH="/scripts:/py/bin:$PATH"
@@ -39,3 +43,5 @@ ENV PATH="/scripts:/py/bin:$PATH"
 USER django-user
 
 CMD ["run.sh"]
+
+
