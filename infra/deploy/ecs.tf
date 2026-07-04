@@ -111,8 +111,8 @@ resource "aws_ecs_task_definition" "api" {
         user              = "nginx"
         portMappings = [
           {
-            containerPort = 8000
-            hostPort      = 8000
+            containerPort = 80 # de 8000 alterado pra 80
+            hostPort      = 80 # de 8000 alterado pra 80
           }
         ]
         environment = [
@@ -175,9 +175,17 @@ resource "aws_security_group" "ecs_service" {
   }
 
   # HTTP inbound access
+  #  ingress {
+  #    from_port   = 8000
+  #    to_port     = 8000
+  #    protocol    = "tcp"
+  #    cidr_blocks = ["0.0.0.0/0"]
+  #  }
+
   ingress {
-    from_port   = 8000
-    to_port     = 8000
+    description = "Allow HTTP traffic from anywhere on port 80"
+    from_port   = 80 # Alterado de 8000 para 80
+    to_port     = 80 # Alterado de 8000 para 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
