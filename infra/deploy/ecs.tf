@@ -175,20 +175,20 @@ resource "aws_security_group" "ecs_service" {
   }
 
   # HTTP inbound access
-  #  ingress {
-  #    from_port   = 8000
-  #    to_port     = 8000
-  #    protocol    = "tcp"
-  #    cidr_blocks = ["0.0.0.0/0"]
-  #  }
-
   ingress {
-    description = "Allow HTTP traffic from anywhere on port 80"
-    from_port   = 80 # Alterado de 8000 para 80
-    to_port     = 80 # Alterado de 8000 para 80
+    from_port   = 8000
+    to_port     = 8000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  # ingress {
+  # description = "Allow HTTP traffic from anywhere on port 80"
+  # from_port   = 80 # Alterado de 8000 para 80
+  # to_port     = 80 # Alterado de 8000 para 80
+  # protocol    = "tcp"
+  # cidr_blocks = ["0.0.0.0/0"]
+  #}
 
   egress {
     from_port   = 0
