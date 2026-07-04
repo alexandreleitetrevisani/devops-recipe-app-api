@@ -22,12 +22,14 @@ RUN python -m venv /py && \
     fi && \
     rm -rf /tmp && \
     apk del .tmp-build-deps && \
+    mkdir -p /vol/web/static && \
+    mkdir -p /vol/web/media && \
     adduser \
         --disabled-password \
         --no-create-home \
         django-user && \
-    mkdir -p /vol/web/static && \
-    mkdir -p /vol/web/media && \
+  #  mkdir -p /vol/web/static && \
+  #  mkdir -p /vol/web/media && \
     chown -R django-user:django-user /vol && \
     chmod -R 755 /vol && \
     chmod -R +x /scripts
