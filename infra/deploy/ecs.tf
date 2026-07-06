@@ -111,8 +111,8 @@ resource "aws_ecs_task_definition" "api" {
         user              = "nginx"
         portMappings = [
           {
-            containerPort = 80 # de 8000 alterado pra 80
-            hostPort      = 80 # de 8000 alterado pra 80
+            containerPort = 8000 # voltou de novo para 8000      8000 alterado pra 80
+            hostPort      = 8000 # voltou de novo para 8000      8000 alterado pra 80
           }
         ]
         environment = [
