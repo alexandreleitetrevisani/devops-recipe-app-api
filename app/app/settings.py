@@ -39,6 +39,10 @@ ALLOWED_HOSTS.extend(
 if os.environ.get('AWS_EXECUTION_ENV'):
     ALLOWED_HOSTS.append(gethostbyname(gethostname()))
 
+# Diz ao Django que ele está atrás de um Load Balancer com HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 # Application definition
 
 INSTALLED_APPS = [
