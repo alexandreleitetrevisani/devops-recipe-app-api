@@ -162,6 +162,12 @@ MEDIA_ROOT = '/vol/web/media'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Adicione isso para garantir que o Django não interfira no mapeamento do uWSGI
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 #1. Corrigir o MIME Type no WhiteNoise
 # Força o WhiteNoise a usar mimetypes corretos
 import mimetypes

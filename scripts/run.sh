@@ -13,7 +13,8 @@ mkdir -p /app/staticfiles
 python manage.py collectstatic --noinput
 python manage.py migrate
 
-# ATUALIZADO: Adicionado mapeamento estático para o uWSGI servir o CSS diretamente
-uwsgi --http :9000 --workers 4 --master --enable-threads --module app.wsgi --static-map /static=/app/staticfiles
+# ATUALIZADO: Força o uWSGI a rodar em HTTP na porta 9000 e mapeia a rota de forma estrita
+uwsgi --http :9000 --workers 4 --master --enable-threads --module app.wsgi --static-map /static=/app/staticfiles --static-safe /app/staticfiles
+
 
 
