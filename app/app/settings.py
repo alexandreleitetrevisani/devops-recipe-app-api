@@ -169,5 +169,13 @@ mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("text/javascript", ".js", True)
 
 # Garante suporte a compressão e cache agressivo (ajuda a evitar erros de leitura)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+import sys
+
+# Se o comando executado for 'test', usa o storage padrão sem hash
+if 'test' in sys.argv:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+else:
+    # Em produção usa o WhiteNoise com compressão e cache agressivo
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
