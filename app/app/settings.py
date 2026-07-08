@@ -153,14 +153,13 @@ SPECTACULAR_SETTINGS = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-#STATIC_URL = '/static/static/'
-#MEDIA_URL = '/static/media/'
-STATIC_URL = '/static/'  # Alterado de '/static/static/' para '/static/'
-MEDIA_URL = '/media/'   # Alterado de '/static/media/' para '/media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
+# Aponta para as pastas criadas no Dockerfile
+STATIC_ROOT = '/vol/web/static'
 MEDIA_ROOT = '/vol/web/media'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Adicione isso para garantir que o Django não interfira no mapeamento do uWSGI
 STATICFILES_FINDERS = [
