@@ -162,4 +162,12 @@ MEDIA_ROOT = '/vol/web/media'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+#1. Corrigir o MIME Type no WhiteNoise
+# Força o WhiteNoise a usar mimetypes corretos
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/javascript", ".js", True)
+
+# Garante suporte a compressão e cache agressivo (ajuda a evitar erros de leitura)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
