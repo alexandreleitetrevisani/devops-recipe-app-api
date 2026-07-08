@@ -1,5 +1,5 @@
 FROM python:3.9-alpine3.13
-LABEL maintainer="londonappdeveloper.com"
+LABEL maintainer="alexandreleitetrevisani.space"
 
 ENV PYTHONUNBUFFERED 1
 
@@ -38,13 +38,13 @@ RUN python -m venv /py && \
     chmod -R 755 /app && \
     chmod -R +x /scripts
 
-#ADICIONADO NA CORREÇÃO DO CSS
-RUN python manage.py collectstatic --noinput
 
 
 ENV PATH="/scripts:/py/bin:$PATH"
 
 USER django-user
+#ADICIONANDO NA CORREÇÃO DO CSS
+RUN python manage.py collectstatic --noinput
 
 CMD ["run.sh"]
 
