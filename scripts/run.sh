@@ -1,4 +1,4 @@
-# uwsgi --socket :9000 --workers 4 --master --enable-threads --module app.wsgi   ALTERADO ABAIXO
+
 
 
 #!/bin/sh
@@ -13,6 +13,7 @@ mkdir -p /app/staticfiles
 python manage.py collectstatic --noinput
 python manage.py migrate
 
-# ALTERADO: Mudamos de --socket para --http na porta 9000 (ou a porta que o seu ECS espera)
-uwsgi --http :9000 --workers 4 --master --enable-threads --module app.wsgi
+# ATUALIZADO: Adicionado mapeamento estático para o uWSGI servir o CSS diretamente
+uwsgi --http :9000 --workers 4 --master --enable-threads --module app.wsgi --static-map /static=/app/staticfiles
+
 
