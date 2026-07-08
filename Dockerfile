@@ -38,6 +38,10 @@ RUN python -m venv /py && \
     chmod -R 755 /app && \
     chmod -R +x /scripts
 
+#ADICIONADO NA CORREÇÃO DO CSS
+RUN python manage.py collectstatic --noinput
+
+
 ENV PATH="/scripts:/py/bin:$PATH"
 
 USER django-user

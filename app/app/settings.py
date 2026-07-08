@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  #ADICIONADO APÓS DEPLOYADO 100% COM FALHA NO CSS
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -152,11 +153,13 @@ SPECTACULAR_SETTINGS = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/static/'
-MEDIA_URL = '/static/media/'
+#STATIC_URL = '/static/static/'
+#MEDIA_URL = '/static/media/'
+STATIC_URL = '/static/'  # Alterado de '/static/static/' para '/static/'
+MEDIA_URL = '/media/'   # Alterado de '/static/media/' para '/media/'
 
 MEDIA_ROOT = '/vol/web/media'
-#STATIC_ROOT = '/vol/web/static'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATIC_ROOT = os.path.join(BASE_DIR, 'app/staticfiles')
+
 
