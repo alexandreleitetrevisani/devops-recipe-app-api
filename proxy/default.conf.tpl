@@ -1,13 +1,9 @@
 server {
     listen ${LISTEN_PORT};
 
-    # O operador ^~ força prioridade máxima para esta rota sobre qualquer alias ou regra local
-    location ^~ /static/ {
-        proxy_pass              http://${APP_HOST}:9000;
-        proxy_set_header        Host $host;
-        proxy_set_header        X-Real-IP $remote_addr;
-        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto $scheme;
+    # Mapeamento direto e ultra veloz do Nginx para o volume
+    location /static/ {
+        alias /vol/web/static/;
     }
 
     location / {

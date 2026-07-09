@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  #ADICIONADO APÓS DEPLOYADO 100% COM FALHA NO CSS
+   # 'whitenoise.middleware.WhiteNoiseMiddleware',  #ADICIONADO APÓS DEPLOYADO 100% COM FALHA NO CSS
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
