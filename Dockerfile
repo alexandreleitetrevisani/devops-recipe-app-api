@@ -36,12 +36,12 @@ RUN python -m venv /py && \
 
 
 # --- ADICIONE ESTE BLOCO AQUI (Ainda como root) ---
-# Garante que a pasta existe com as permissões corretas
-RUN mkdir -p /vol/web/static && \
-    chown -R django-user:django-user /vol/web/static
-
 # Adiciona o ambiente virtual ao PATH para o build encontrar o Django
 ENV PATH="/py/bin:$PATH"
+
+# Garante que a pasta interna existe e pertence ao utilizador correto antes do build
+RUN mkdir -p /app/staticfiles && chown -R django-user:django-user /app/staticfiles
+
 
 # Executa o collectstatic no build (Garante que o CSS entra fisicamente na imagem)
 RUN python manage.py collectstatic --noinput

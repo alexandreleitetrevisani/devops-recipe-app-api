@@ -161,7 +161,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 # Aponta para as pastas criadas no Dockerfile
-STATIC_ROOT = '/vol/web/static'
+STATIC_ROOT = '/app/staticfiles'
 MEDIA_ROOT = '/vol/web/media'
 
 

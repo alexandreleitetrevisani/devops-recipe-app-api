@@ -6,5 +6,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
 application = get_wsgi_application()
 
-application = WhiteNoise(application, root='/vol/web/static')
-application.add_files('/vol/web/static', prefix='static/')
+# Aponta o WhiteNoise para ler de /app/staticfiles
+application = WhiteNoise(application, root='/app/staticfiles')
+application.add_files('/app/staticfiles', prefix='static/')
