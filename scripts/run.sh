@@ -4,14 +4,14 @@ set -e
 
 python manage.py wait_for_db
 
-# Cria a pasta protegida dentro de /app
+# Garante que a pasta interna existe
 mkdir -p /app/staticfiles
 
 python manage.py collectstatic --noinput
 python manage.py migrate
 
-# IMPORTANTE: Roda o uWSGI em modo HTTP na porta 9000 para responder ao proxy_pass do Nginx
-uwsgi --http :9000 --workers 4 --master --enable-threads --module app.wsgi
+# RESOLUÇÃO: Abrimos a porta 9000 para o app e a porta 8000 em HTTP para os arquivos estáticos
+uwsgi --socket :9000 --http :8000 --workers 4 --master --enable-threads --module app.wsgi
 
 
 
