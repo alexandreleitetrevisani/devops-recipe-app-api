@@ -1,8 +1,8 @@
 server {
     listen ${LISTEN_PORT};
 
-    # CONTORNO: Em vez de ler a pasta, o Nginx pede o CSS diretamente ao Django
-    location /static/ {
+    # O operador ^~ força prioridade máxima para esta rota sobre qualquer alias ou regra local
+    location ^~ /static/ {
         proxy_pass              http://${APP_HOST}:9000;
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
