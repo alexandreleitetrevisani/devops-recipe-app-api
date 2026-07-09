@@ -1,7 +1,6 @@
 server {
     listen ${LISTEN_PORT};
 
-    # Mapeamento direto e ultra veloz do Nginx para o volume
     location /static/ {
         alias /vol/web/static/;
     }
