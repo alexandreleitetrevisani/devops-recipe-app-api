@@ -10,8 +10,7 @@ mkdir -p /vol/web/static
 python manage.py collectstatic --noinput
 python manage.py migrate
 
-# Voltamos para o modo socket puro na porta 9000, compatível com uwsgi_pass
-uwsgi --socket :9000 --workers 4 --master --enable-threads --module app.wsgi
+uwsgi --http :9000 --workers 4 --master --enable-threads --module app.wsgi
 
 
 
