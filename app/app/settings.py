@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-   # 'whitenoise.middleware.WhiteNoiseMiddleware',  #ADICIONADO APÓS DEPLOYADO 100% COM FALHA NO CSS
+    'whitenoise.middleware.WhiteNoiseMiddleware',  #ADICIONADO APÓS DEPLOYADO 100% COM FALHA NO CSS
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -161,7 +161,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 # Aponta para as pastas criadas no Dockerfile
-STATIC_ROOT = '/vol/web/static'
+STATIC_ROOT = '/app/staticfiles'
 MEDIA_ROOT = '/vol/web/media'
 
 
@@ -171,4 +171,15 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/javascript", ".js", True)
+
+import sys
+
+if 'test' in sys.argv:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+else:
+    # Ativa o WhiteNoise para servir os arquivos da pasta /app/staticfiles
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
