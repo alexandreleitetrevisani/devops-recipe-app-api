@@ -28,24 +28,25 @@ RUN python -m venv /py && \
         --disabled-password \
         --no-create-home \
         django-user && \
-  #  mkdir -p /vol/web/static && \
-  #  mkdir -p /vol/web/media && \
-    
     chown -R django-user:django-user /vol && \
-    # ADICIONE ESTA LINHA ABAIXO PARA LIBERTAR A ESCRITA EM /app
     chown -R django-user:django-user /app && \
     chmod -R 755 /vol && \
     chmod -R 755 /app && \
     chmod -R +x /scripts
 
 
+# --- ADICIONE ESTE BLOCO AQUI (Ainda como root) ---
+# Garante que a pasta existe com as permissões corretas
+RUN mkdir -p /vol/web/static && \
+    chown -R django-user:django-user /vol/web/static
 
-ENV PATH="/scripts:/py/bin:$PATH"
+# Adiciona o ambiente virtual ao PATH para o build encontrar o Django
+ENV PATH="/py/bin:$PATH"
 
-USER django-user
-#ADICIONANDO NA CORREÇÃO DO CSS
+# Executa o collectstatic no build (Garante que o CSS entra fisicamente na imagem)
 RUN python manage.py collectstatic --noinput
 
+ENV PATH="/scripts:/py/bin:$PATH"
+USER django-user
+
 CMD ["run.sh"]
-
-
